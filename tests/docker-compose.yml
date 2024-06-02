@@ -11,9 +11,11 @@ services:
 
   cycle-mysql_latest:
     image: mysql:8.0.37
+    restart: on-failure
     command: |
       --default-authentication-plugin=mysql_native_password
       --character-set-server=utf8mb4
+      --collation-server=utf8mb4_unicode_ci
     ports:
       - "13306:3306"
     environment:
@@ -23,6 +25,7 @@ services:
 
   cycle-postgres:
     image: postgres:15.2
+    restart: on-failure
     ports:
       - "15432:5432"
     environment:
